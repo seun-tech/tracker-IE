@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Tracker App</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="light">
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <button class="tab-btn" data-tab="dashboard"><i class="fas fa-chart-line"></i> Dashboard</button>
+  <button class="tab-btn" data-tab="transactions"><i class="fas fa-table"></i> Transactions</button>
+  <button class="tab-btn" data-tab="settings"><i class="fas fa-cog"></i> Settings</button>
+  <button class="tab-btn" data-tab="profile"><i class="fas fa-user"></i> Profile</button>
+</div>
+
+<!-- TABS -->
+
+<div id="dashboard" class="tab-content">
+  <div class="date-filter">
+    <label for="date-filter">Select Date:</label>
+    <input type="date" id="date-filter">
+  </div>
+  <div class="metrics-container">
+    <div class="metric-card"><i class="fas fa-wallet"></i><h3>Total Income</h3><p id="total-income">$0</p></div>
+    <div class="metric-card"><i class="fas fa-money-bill-wave"></i><h3>Total Expenses</h3><p id="total-expenses">$0</p></div>
+    <div class="metric-card"><i class="fas fa-balance-scale"></i><h3>Balance</h3><p id="balance">$0</p></div>
+    <div class="metric-card"><i class="fas fa-calendar-day"></i><h3>Daily Income</h3><p id="daily-income">$0</p></div>
+    <div class="metric-card"><i class="fas fa-calendar-times"></i><h3>Daily Expenses</h3><p id="daily-expense">$0</p></div>
+  </div>
+  <canvas id="comboChart" width="400" height="200"></canvas>
+  <canvas id="barChart" width="400" height="200"></canvas>
+</div>
+
+<div id="transactions" class="tab-content">
+  <button id="show-add-form">Add Transaction</button>
+  <div id="add-transaction-form" class="hidden">
+    <input type="date" id="new-date">
+    <select id="new-type"><option value="income">Income</option><option value="expense">Expense</option></select>
+    <input type="text" id="new-category" placeholder="Category">
+    <input type="number" id="new-amount" placeholder="Amount">
+    <input type="text" id="new-description" placeholder="Description">
+    <button id="add-btn">Submit</button>
+    <button id="cancel-btn">Cancel</button>
+  </div>
+  <input type="text" id="search-input" placeholder="Search category/description">
+  <table id="transactions-table">
+    <thead><tr><th>Date</th><th>Type</th><th>Category</th><th>Amount</th><th>Description</th><th>Actions</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div id="settings" class="tab-content">
+  <h3>Theme</h3>
+  <select id="theme-select">
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+    <option value="professional">Professional</option>
+  </select>
+
+  <h3>Expense Threshold</h3>
+  <input type="number" id="expense-threshold" placeholder="Enter threshold">
+
+  <h3>Income Categories</h3>
+  <input type="text" id="income-categories" placeholder="Comma separated">
+
+  <h3>Expense Categories</h3>
+  <input type="text" id="expense-categories" placeholder="Comma separated">
+
+  <h3>Export Data</h3>
+  <button id="export-pdf">Export to PDF</button>
+  <button id="export-excel">Export to Excel</button>
+
+  <button id="save-settings">Save Settings</button>
+</div>
+
+<div id="profile" class="tab-content">
+  <h3>User Profile</h3>
+  <p id="profile-email"></p>
+  <button id="logout-btn">Logout</button>
+</div>
+
+<script type="module" src="js/firebase.js"></script>
+<script type="module" src="js/app.js"></script>
+<script type="module" src="js/dashboard.js"></script>
+<script type="module" src="js/transactions.js"></script>
+<script type="module" src="js/settings.js"></script>
+</body>
+</html>
